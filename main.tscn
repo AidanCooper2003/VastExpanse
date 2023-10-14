@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://ltavlw2f6nfi"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+offset_left = 164.0
+offset_top = 53.0
+offset_right = 224.0
+offset_bottom = 113.0
+tooltip_text = "Hold \"Shift\" and click to increase by 10.
+
+Hold \"Alt\" and click to increase by 100."
+text = "+"
+
+[node name="Button2" type="Button" parent="Control"]
+offset_left = 240.0
+offset_top = 53.0
+offset_right = 300.0
+offset_bottom = 113.0
+text = "-"
