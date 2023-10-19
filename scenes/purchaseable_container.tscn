@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc2j3x8dnt3ay"]
+
+[ext_resource type="Script" path="res://scripts/purchaseable_container.gd" id="1_fgwcw"]
+[ext_resource type="Texture2D" uid="uid://cwukmdirlq236" path="res://icons/fireshield.png" id="2_bgeq4"]
+
+[node name="PurchaseableContainer" type="Control" node_paths=PackedStringArray("_purchaseButton", "_rankLabel", "_costLabel", "_descriptionLabel", "_nameLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 790.0
+offset_top = 413.0
+offset_right = 830.0
+offset_bottom = 453.0
+script = ExtResource("1_fgwcw")
+_purchaseButton = NodePath("PurchaseButton")
+_rankLabel = NodePath("RankLabel")
+_costLabel = NodePath("CostLabel")
+_descriptionLabel = NodePath("DescriptionLabel")
+_nameLabel = NodePath("NameLabel")
+
+[node name="PurchaseButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 42.0
+offset_bottom = 42.0
+icon = ExtResource("2_bgeq4")
+expand_icon = true
+
+[node name="RankLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 20.0
+offset_right = 291.0
+offset_bottom = 45.0
+
+[node name="CostLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = -3.0
+offset_right = 360.0
+offset_bottom = 22.0
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 43.0
+offset_right = 359.0
+offset_bottom = 83.0
+fit_content = true
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = -26.0
+offset_right = 359.0
