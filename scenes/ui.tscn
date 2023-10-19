@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://gse3n3r1kq3y"]
+
+[ext_resource type="PackedScene" uid="uid://ct5ynil4jaquo" path="res://scenes/job_container.tscn" id="1_jey01"]
+[ext_resource type="Texture2D" uid="uid://uxudpd7aug67" path="res://icons/lab-coat.png" id="2_3nbkc"]
+[ext_resource type="Texture2D" uid="uid://c6damhah6g0iw" path="res://icons/battery-plus(1).png" id="3_6q4xh"]
+[ext_resource type="Texture2D" uid="uid://ci750y3ctn0ry" path="res://icons/dig-dug.png" id="3_rj330"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ResearcherJob" parent="." instance=ExtResource("1_jey01")]
+offset_top = 114.68
+offset_bottom = 154.68
+jobIcon = ExtResource("2_3nbkc")
+jobTitle = "Researcher"
+
+[node name="ExtractorJob" parent="." instance=ExtResource("1_jey01")]
+offset_top = 235.68
+offset_bottom = 275.68
+jobIcon = ExtResource("3_rj330")
+jobTitle = "Extractor"
+
+[node name="TechnicianJob" parent="." instance=ExtResource("1_jey01")]
+jobIcon = ExtResource("3_6q4xh")
+jobTitle = "Technician"
