@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bc2j3x8dnt3ay"]
 
-[ext_resource type="Script" path="res://scripts/purchaseable_container.gd" id="1_fgwcw"]
+[ext_resource type="Script" path="res://scripts/containers/purchaseable_container.gd" id="1_sew8h"]
 [ext_resource type="Texture2D" uid="uid://cwukmdirlq236" path="res://icons/fireshield.png" id="2_bgeq4"]
 
 [node name="PurchaseableContainer" type="Control" node_paths=PackedStringArray("_purchaseButton", "_rankLabel", "_costLabel", "_descriptionLabel", "_nameLabel")]
@@ -10,7 +10,7 @@ offset_left = 790.0
 offset_top = 413.0
 offset_right = 830.0
 offset_bottom = 453.0
-script = ExtResource("1_fgwcw")
+script = ExtResource("1_sew8h")
 _purchaseButton = NodePath("PurchaseButton")
 _rankLabel = NodePath("RankLabel")
 _costLabel = NodePath("CostLabel")
@@ -49,3 +49,5 @@ fit_content = true
 layout_mode = 0
 offset_top = -26.0
 offset_right = 359.0
+
+[connection signal="pressed" from="PurchaseButton" to="." method="purchase_pressed"]

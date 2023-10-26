@@ -8,8 +8,7 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="CanvasLayer" parent="." node_paths=PackedStringArray("_uiManager") instance=ExtResource("1_v42k6")]
-_uiManager = NodePath("../UIManager")
+[node name="CanvasLayer" parent="." instance=ExtResource("1_v42k6")]
 
 [node name="ResourceManager" type="Node" parent="." node_paths=PackedStringArray("jobManager")]
 script = ExtResource("2_bekjc")

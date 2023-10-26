@@ -1,11 +1,20 @@
 extends Node
+class_name UIManager
 
+@export var _UI: UI
+@export var _jobManager: JobManager
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func update_jobs():
+	for j in _jobManager.getAllJobNames():
+		var description:= ""
+		for r in _jobManager.getJobResources(j):
+			description = description  + ("+ " + str(r.resourceAmount) + " " + Enumerations.ResourceType.keys()[r.resourceType])
+		_UI.update_job(j, _jobManager.getHireAmount(j), _jobManager.getMaxWorkers(j), description)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func hire_job(jobName: String, count: int):
+	_jobManager.hire(jobName, count)
+	update_jobs()
+	
+func fire_job(jobName: String, count: int):
+	_jobManager.hire(jobName, -count)
+	update_jobs()

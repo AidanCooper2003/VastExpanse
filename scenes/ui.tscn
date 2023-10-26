@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://gse3n3r1kq3y"]
+[gd_scene load_steps=14 format=3 uid="uid://gse3n3r1kq3y"]
 
 [ext_resource type="PackedScene" uid="uid://ct5ynil4jaquo" path="res://scenes/job_container.tscn" id="1_jey01"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_unrjp"]
 [ext_resource type="Texture2D" uid="uid://uxudpd7aug67" path="res://icons/lab-coat.png" id="2_3nbkc"]
 [ext_resource type="Texture2D" uid="uid://c6damhah6g0iw" path="res://icons/battery-plus(1).png" id="3_6q4xh"]
 [ext_resource type="Texture2D" uid="uid://ci750y3ctn0ry" path="res://icons/dig-dug.png" id="3_rj330"]
@@ -11,9 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://d0tr4re4qnw1s" path="res://icons/factory(1).png" id="9_ylw3l"]
 [ext_resource type="Texture2D" uid="uid://d2c27ebmqdhwa" path="res://icons/gold-mine.png" id="10_x2qmq"]
 [ext_resource type="Texture2D" uid="uid://cb1orsoqinyjt" path="res://icons/microscope.png" id="11_krdmc"]
-[ext_resource type="Script" path="res://scripts/resources.gd" id="12_qad6t"]
+[ext_resource type="Script" path="res://scripts/resource_label.gd" id="13_ob5dy"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer")]
+script = ExtResource("1_unrjp")
+jobsContainer = NodePath("Jobs")
+technologyContainer = NodePath("Technologies")
+buildingsContainer = NodePath("Buildings")
+resourcesContainer = NodePath("Resources")
 
 [node name="Jobs" type="Control" parent="."]
 layout_mode = 3
@@ -21,30 +27,33 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TechnicianJob" parent="Jobs" instance=ExtResource("1_jey01")]
+[node name="TechnicianJob" parent="Jobs" node_paths=PackedStringArray("_ui") instance=ExtResource("1_jey01")]
 layout_mode = 1
 offset_left = 16.96
 offset_top = 36.4
 offset_right = 56.96
 offset_bottom = 76.4
+_ui = NodePath("../..")
 _jobIcon = ExtResource("3_6q4xh")
 _jobTitle = "Technician"
 
-[node name="ExtractorJob" parent="Jobs" instance=ExtResource("1_jey01")]
+[node name="ExtractorJob" parent="Jobs" node_paths=PackedStringArray("_ui") instance=ExtResource("1_jey01")]
 layout_mode = 1
 offset_left = 16.96
 offset_top = 116.4
 offset_right = 56.96
 offset_bottom = 156.4
+_ui = NodePath("../..")
 _jobIcon = ExtResource("3_rj330")
 _jobTitle = "Extractor"
 
-[node name="ResearcherJob" parent="Jobs" instance=ExtResource("1_jey01")]
+[node name="ResearcherJob" parent="Jobs" node_paths=PackedStringArray("_ui") instance=ExtResource("1_jey01")]
 layout_mode = 1
 offset_left = 16.96
 offset_top = 196.4
 offset_right = 56.96
 offset_bottom = 236.4
+_ui = NodePath("../..")
 _jobIcon = ExtResource("2_3nbkc")
 _jobTitle = "Researcher"
 
@@ -54,23 +63,26 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SolarCellsTech" parent="Technologies" instance=ExtResource("5_p7kpl")]
+[node name="SolarCellsTech" parent="Technologies" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_top = 350.0
 offset_bottom = 390.0
+_ui = NodePath("../..")
 _icon = ExtResource("6_c4xa1")
 _purchaseableName = "Solar Cells"
 _effectDescription = "+1 Energy from Technicians"
 
-[node name="FireshieldTech" parent="Technologies" instance=ExtResource("5_p7kpl")]
+[node name="FireshieldTech" parent="Technologies" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_top = 450.0
 offset_bottom = 490.0
+_ui = NodePath("../..")
 _icon = ExtResource("7_x5abt")
 _purchaseableName = "Heat Shields"
 _effectDescription = "+1 Material from Extractors"
 
-[node name="CompEfficiencyTech" parent="Technologies" instance=ExtResource("5_p7kpl")]
+[node name="CompEfficiencyTech" parent="Technologies" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_top = 550.0
 offset_bottom = 590.0
+_ui = NodePath("../..")
 _icon = ExtResource("8_3fwu6")
 _purchaseableName = "Computational Efficiency"
 _effectDescription = "+1 Knowledge from Researchers"
@@ -81,31 +93,34 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="FactoryBuilding" parent="Buildings" instance=ExtResource("5_p7kpl")]
+[node name="FactoryBuilding" parent="Buildings" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_left = 20.0
 offset_top = 350.0
 offset_right = 60.0
 offset_bottom = 390.0
+_ui = NodePath("../..")
 _icon = ExtResource("9_ylw3l")
 _purchaseableName = "Battery Manufactorium"
 _effectDescription = "+10 Maximum Technicians"
 purchaseType = 1
 
-[node name="MantleMineBuilding" parent="Buildings" instance=ExtResource("5_p7kpl")]
+[node name="MantleMineBuilding" parent="Buildings" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_left = 20.0
 offset_top = 450.0
 offset_right = 60.0
 offset_bottom = 490.0
+_ui = NodePath("../..")
 _icon = ExtResource("10_x2qmq")
 _purchaseableName = "Mantle Mining Camp"
 _effectDescription = "+10 Maximum Miners"
 purchaseType = 1
 
-[node name="LabBuilding" parent="Buildings" instance=ExtResource("5_p7kpl")]
+[node name="LabBuilding" parent="Buildings" node_paths=PackedStringArray("_ui") instance=ExtResource("5_p7kpl")]
 offset_left = 20.0
 offset_top = 550.0
 offset_right = 60.0
 offset_bottom = 590.0
+_ui = NodePath("../..")
 _icon = ExtResource("11_krdmc")
 _purchaseableName = "Campus"
 _effectDescription = "+10 Maximum Researchers"
@@ -158,7 +173,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("12_qad6t")
 
 [node name="PopulationLabel" type="RichTextLabel" parent="Resources"]
 layout_mode = 0
@@ -167,6 +181,7 @@ offset_top = 37.0
 offset_right = 1151.0
 offset_bottom = 77.0
 text = "Population: 0/10, +1"
+script = ExtResource("13_ob5dy")
 
 [node name="MaterialLabel" type="RichTextLabel" parent="Resources"]
 layout_mode = 0
@@ -175,6 +190,7 @@ offset_top = 77.0
 offset_right = 1151.0
 offset_bottom = 117.0
 text = "Material: 0, +1"
+script = ExtResource("13_ob5dy")
 
 [node name="KnowledgeLabel" type="RichTextLabel" parent="Resources"]
 layout_mode = 0
@@ -183,3 +199,4 @@ offset_top = 119.0
 offset_right = 1151.0
 offset_bottom = 159.0
 text = "Knowledge: 0 +1"
+script = ExtResource("13_ob5dy")

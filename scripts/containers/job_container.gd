@@ -1,5 +1,7 @@
 extends Control
 
+@export var _ui : UI
+
 @export var _jobIcon: Texture2D
 @export var _increaseButton: Button
 @export var _decreaseButton: Button
@@ -10,11 +12,20 @@ extends Control
 
 func _ready():
 	_jobIconRect.texture = _jobIcon
-	_update_job_description("placeholder")
-	_update_job_count(0, 10)
+	update_job_description("placeholder")
+	update_job_count(0, 10)
 
-func _update_job_description(description: String):
+func update_job_description(description: String):
 	_jobDescriptionLabel.text = _jobTitle + ": " + description
 	
-func _update_job_count(currentWorkers: int, maxWorkers: int):
+func update_job_count(currentWorkers: int, maxWorkers: int):
 	_jobCountLabel.text = str(currentWorkers) + " / " + str(maxWorkers)
+
+func get_job_title():
+	return _jobTitle
+
+func increase_pressed():
+	_ui.job_hire(_jobTitle, 1)
+	
+func decrease_pressed():
+	_ui.job_fire(_jobTitle, 1)

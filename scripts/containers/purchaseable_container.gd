@@ -1,5 +1,7 @@
 extends Control
 
+@export var _ui : UI
+
 @export var _purchaseButton : Button
 @export var _rankLabel : RichTextLabel
 @export var _costLabel : RichTextLabel
@@ -35,3 +37,9 @@ func _update_name_label(purchaseableName: String):
 	
 func _update_icon(iconImage: Texture2D):
 	_purchaseButton.icon = iconImage
+	
+func get_purchasable_name():
+	return _purchaseableName
+	
+func purchase_pressed():
+	pass
