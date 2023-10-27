@@ -42,9 +42,9 @@ func getJobResources(jobName: String):
 func getResourceFromJobs(resourceType: Enumerations.ResourceType):
 	var total := 0
 	for j in jobs.keys():
-		for r in getJobResources(j.jobName):
+		for r in getJobResources(j):
 			if r.resourceType == resourceType:
-				total += r.getJobResources()
+				total += r.resourceAmount
 	return total
 
 func getAllJobNames():

@@ -23,7 +23,8 @@ func _ready():
 	for b in buildingsContainer.get_children():
 		_purchasables[b.get_purchasable_name()] = b
 	for r in resourcesContainer.get_children():
-		_resources[r.get_resource_name] = r
+		_resources[r.get_resource_name()] = r
+		print("found resource " + r.get_resource_name())
 
 func update_job(jobName: String, hired: int, max: int, description: String):
 	_jobs[jobName].update_job_count(hired, max)
@@ -41,3 +42,6 @@ func job_hire(jobName: String, count: int):
 
 func job_fire(jobName: String, count: int):
 	_uiManager.fire_job(jobName, count)
+	
+func end_turn():
+	_uiManager.end_turn()
