@@ -28,8 +28,9 @@ _resourceManager = NodePath("../ResourceManager")
 script = ExtResource("4_0kxrh")
 _jobManager = NodePath("../JobManager")
 
-[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("_UI", "_jobManager", "_resourceManager")]
+[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("_UI", "_jobManager", "_resourceManager", "_purchaseableManager")]
 script = ExtResource("3_7qpfy")
 _UI = NodePath("../CanvasLayer")
 _jobManager = NodePath("../JobManager")
 _resourceManager = NodePath("../ResourceManager")
+_purchaseableManager = NodePath("../PurchasableManager")

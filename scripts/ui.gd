@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name UI
 
 var _jobs = {}
-var _purchasables = {}
+var _purchaseables = {}
 var _resources = {}
 
 @export var _uiManager: UIManager
@@ -20,9 +20,9 @@ func _ready():
 	for j in jobsContainer.get_children():
 		_jobs[j.get_job_title()] = j
 	for t in technologyContainer.get_children():
-		_purchasables[t.get_purchasable_name()] = t
+		_purchaseables[t.get_purchasable_name()] = t
 	for b in buildingsContainer.get_children():
-		_purchasables[b.get_purchasable_name()] = b
+		_purchaseables[b.get_purchasable_name()] = b
 	for r in resourcesContainer.get_children():
 		_resources[r.get_resource_name()] = r
 		print("found resource " + r.get_resource_name())
@@ -31,9 +31,10 @@ func update_job(jobName: String, hired: int, max: int, description: String):
 	_jobs[jobName].update_job_count(hired, max)
 	_jobs[jobName].update_job_description(description)
 	
-func update_purchasable(purchasableName: String, cost: int, count: int):
-	_purchasables[purchasableName].update_rank_label(count)
-	_purchasables[purchasableName].update_cost_label(cost)
+func update_purchasable(purchaseableName: String, cost: int, count: int, description: String, resourceCost: String):
+	_purchaseables[purchaseableName]._update_rank_label("Rank: " + str(count))
+	_purchaseables[purchaseableName]._update_cost_label(resourceCost + ": " + str(cost))
+	_purchaseables[purchaseableName]._update_description_label(description)
 
 
 # Population uses current as max population, and income as hired population. Temporary workaround.
