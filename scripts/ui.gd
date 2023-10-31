@@ -11,6 +11,7 @@ var _resources = {}
 @export var technologyContainer: Node
 @export var buildingsContainer: Node
 @export var resourcesContainer: Node
+@export var conversionLabel : Node
 
 
 # At some point, make jobs, purchasables, and resources interfaces so this
@@ -34,9 +35,17 @@ func update_purchasable(purchasableName: String, cost: int, count: int):
 	_purchasables[purchasableName].update_rank_label(count)
 	_purchasables[purchasableName].update_cost_label(cost)
 
+
+# Population uses current as max population, and income as hired population. Temporary workaround.
 func update_resources(resourceName: String, current: int, income: int):
-	_resources[resourceName].update_text(str(current) + " / +" + str(income))
-	
+	if resourceName != "Population":
+		_resources[resourceName].update_text(resourceName + ": " + str(current) + " / +" + str(income))
+	else:
+		_resources[resourceName].update_text("Population: " + str(income) + " / " + str(current))
+		
+func update_conversion_label(cost: int, growth: int):
+	conversionLabel.text = "Population Growth\nCost: " + str(cost) + "\nGrowth: " + str(growth)
+
 func job_hire(jobName: String, count: int):
 	_uiManager.hire_job(jobName, count)
 

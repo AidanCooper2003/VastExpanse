@@ -12,14 +12,20 @@ var _resourcePackets := []
 # but couldn't due to insufficient workers to fire.
 # If all workers could be hired, then the overflow is 0.
 func hire(count: int):
-	if _jobHired + count <= _jobMax and _jobHired + count > 0:
+	# Count within bounds
+	if _jobHired + count <= _jobMax and _jobHired + count >= 0:
 		_jobHired += count
 		return 0
-	else:
+	# Count above max
+	elif _jobHired + count >= _jobMax:
 		var overflow = _jobMax - _jobHired + count
 		_jobHired = clamp(_jobHired + count, 0, _jobMax)
 		return overflow
-		
+	# Count below 0
+	else:
+		var overflow = -(_jobHired + count)
+		_jobHired = clamp(_jobHired + count, 0, _jobMax)
+		return overflow
 		
 func set_job_max(count: int):
 	_jobMax = count

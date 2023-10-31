@@ -14,12 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://cb1orsoqinyjt" path="res://icons/microscope.png" id="11_krdmc"]
 [ext_resource type="Script" path="res://scripts/resource_label.gd" id="13_ob5dy"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer", "conversionLabel")]
 script = ExtResource("1_unrjp")
 jobsContainer = NodePath("Jobs")
 technologyContainer = NodePath("Technologies")
 buildingsContainer = NodePath("Buildings")
 resourcesContainer = NodePath("Resources")
+conversionLabel = NodePath("EnergyToPopulationLabel")
 
 [node name="Jobs" type="Control" parent="."]
 layout_mode = 3
@@ -174,13 +175,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PopulationLabel" type="RichTextLabel" parent="Resources"]
+[node name="EnergyLabel" type="RichTextLabel" parent="Resources"]
 layout_mode = 0
 offset_left = 799.0
 offset_top = 37.0
 offset_right = 1151.0
 offset_bottom = 77.0
-text = "Population: 0/10, +1"
+text = "Energy: 0/10, +1"
 script = ExtResource("13_ob5dy")
 _resourceName = "Energy"
 
@@ -204,11 +205,30 @@ text = "Knowledge: 0 +1"
 script = ExtResource("13_ob5dy")
 _resourceName = "Knowledge"
 
+[node name="PopulationLabel" type="RichTextLabel" parent="Resources"]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 159.0
+offset_right = 1151.0
+offset_bottom = 199.0
+text = "Population: 0/2"
+script = ExtResource("13_ob5dy")
+_resourceName = "Population"
+
+[node name="EnergyToPopulationLabel" type="RichTextLabel" parent="."]
+offset_left = 987.0
+offset_top = 36.0
+offset_right = 1144.0
+offset_bottom = 179.0
+text = "Population Growth
+Cost:
+Next Turn: "
+
 [node name="EndTurn" type="Button" parent="."]
 offset_left = 799.0
-offset_top = 165.0
+offset_top = 229.0
 offset_right = 877.0
-offset_bottom = 196.0
+offset_bottom = 260.0
 text = "End Turn"
 
 [connection signal="pressed" from="EndTurn" to="." method="end_turn"]

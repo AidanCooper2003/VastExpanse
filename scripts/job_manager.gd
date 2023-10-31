@@ -4,7 +4,8 @@ class_name JobManager
 
 
 var jobs = {}
-
+var totalPopulationHired := 0
+@export var _resourceManager : ResourceManager
 
 func _ready():
 	_create_job("Technician", 10)
@@ -21,7 +22,12 @@ func _create_job(jobName: String, jobMax: int):
 	jobs[jobName] = job
 
 func hire(jobName: String, count: int):
-	jobs[jobName].hire(count)
+	var currentPopulation = _resourceManager.get_current_resource(Enumerations.ResourceType.Population)
+	if totalPopulationHired + count > currentPopulation:
+		count = currentPopulation - totalPopulationHired
+	var overflow = jobs[jobName].hire(count)
+	totalPopulationHired = clamp(totalPopulationHired + count - overflow, 0, 
+	_resourceManager.get_current_resource(Enumerations.ResourceType.Population))
 
 func getHireAmount(jobName: String):
 	return jobs[jobName].get_job_count()
@@ -49,3 +55,10 @@ func getResourceFromJobs(resourceType: Enumerations.ResourceType):
 
 func getAllJobNames():
 	return jobs.keys()
+	
+func modifyJob(jobName: String, resourceType: Enumerations.ResourceType, resourceAmount: int):
+	var job = jobs[jobName]
+	job.addResourcePacket(resourceType, resourceAmount)
+	
+func get_total_population_hired():
+	return totalPopulationHired

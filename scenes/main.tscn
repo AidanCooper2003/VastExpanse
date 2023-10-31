@@ -15,12 +15,18 @@ _uiManager = NodePath("../UIManager")
 script = ExtResource("2_bekjc")
 jobManager = NodePath("../JobManager")
 _uiManager = NodePath("../UIManager")
+_popCostMultiplier = 2
+_popCostBase = 4
+_initialPops = 2
+_maxGrowthPerTurn = 1000
 
-[node name="JobManager" type="Node" parent="."]
+[node name="JobManager" type="Node" parent="." node_paths=PackedStringArray("_resourceManager")]
 script = ExtResource("2_5jjti")
+_resourceManager = NodePath("../ResourceManager")
 
-[node name="PurchasableManager" type="Node" parent="."]
+[node name="PurchasableManager" type="Node" parent="." node_paths=PackedStringArray("_jobManager")]
 script = ExtResource("4_0kxrh")
+_jobManager = NodePath("../JobManager")
 
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("_UI", "_jobManager", "_resourceManager")]
 script = ExtResource("3_7qpfy")
