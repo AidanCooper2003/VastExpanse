@@ -11,6 +11,7 @@ extends Control
 @export var _purchaseableName : String
 @export var _effectDescription : String
 
+
 # Currently unused
 @export var purchaseType : Enumerations.PurchaseType
 
@@ -42,4 +43,4 @@ func get_purchasable_name():
 	return _purchaseableName
 	
 func purchase_pressed():
-	pass
+	_ui.make_purchase(_purchaseableName)

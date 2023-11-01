@@ -12,6 +12,7 @@ var _resources = {}
 @export var buildingsContainer: Node
 @export var resourcesContainer: Node
 @export var conversionLabel : Node
+@export var turnLabel : Node
 
 
 # At some point, make jobs, purchasables, and resources interfaces so this
@@ -55,3 +56,12 @@ func job_fire(jobName: String, count: int):
 	
 func end_turn():
 	_uiManager.end_turn()
+	_uiManager.increment_turn()
+	_uiManager.do_updates()
+
+func make_purchase(purchaseName: String):
+	_uiManager.make_purchase(purchaseName)
+	_uiManager.do_updates()
+	
+func update_turn_label(turnNumber : int):
+	turnLabel.text = "Turn: " + str(turnNumber)

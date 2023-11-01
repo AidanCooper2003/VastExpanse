@@ -14,13 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://cb1orsoqinyjt" path="res://icons/microscope.png" id="11_krdmc"]
 [ext_resource type="Script" path="res://scripts/resource_label.gd" id="13_ob5dy"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer", "conversionLabel")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer", "conversionLabel", "turnLabel")]
 script = ExtResource("1_unrjp")
 jobsContainer = NodePath("Jobs")
 technologyContainer = NodePath("Technologies")
 buildingsContainer = NodePath("Buildings")
 resourcesContainer = NodePath("Resources")
 conversionLabel = NodePath("EnergyToPopulationLabel")
+turnLabel = NodePath("TurnLabel")
 
 [node name="Jobs" type="Control" parent="."]
 layout_mode = 3
@@ -230,5 +231,12 @@ offset_top = 229.0
 offset_right = 877.0
 offset_bottom = 260.0
 text = "End Turn"
+
+[node name="TurnLabel" type="RichTextLabel" parent="."]
+offset_left = 982.0
+offset_top = 159.0
+offset_right = 1152.0
+offset_bottom = 199.0
+text = "Turn: 0"
 
 [connection signal="pressed" from="EndTurn" to="." method="end_turn"]

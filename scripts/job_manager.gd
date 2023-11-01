@@ -45,6 +45,11 @@ func getJobResources(jobName: String):
 		resources.append(multipliedPacket)
 	return resources
 
+func getSpecificResourceFromJob(jobName: String, resource: Enumerations.ResourceType):
+	for r in getJobResources(jobName):
+		if r.resourceType == resource:
+			return r.resourceAmount
+
 func getResourceFromJobs(resourceType: Enumerations.ResourceType):
 	var total := 0
 	for j in jobs.keys():
@@ -52,13 +57,19 @@ func getResourceFromJobs(resourceType: Enumerations.ResourceType):
 			if r.resourceType == resourceType:
 				total += r.resourceAmount
 	return total
+	
+func getPacketProductionFromJob(resourceType: Enumerations.ResourceType, jobName: String):
+	return jobs[jobName].find_resource_packet(resourceType).resourceAmount
 
 func getAllJobNames():
 	return jobs.keys()
 	
 func modifyJob(jobName: String, resourceType: Enumerations.ResourceType, resourceAmount: int):
 	var job = jobs[jobName]
-	job.addResourcePacket(resourceType, resourceAmount)
+	job.add_resource_packet(resourceType, resourceAmount)
+
+func set_max_workers(jobName: String, newMax: int):
+	jobs[jobName].set_job_max(newMax)
 	
 func get_total_population_hired():
 	return totalPopulationHired

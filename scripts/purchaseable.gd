@@ -8,6 +8,7 @@ var _descriptionUpgradeScale: int
 var _description : String
 var _purchaseableName: String
 var _affectedResource : Enumerations.ResourceType
+var _jobAffected : String
 var _upgradeType : Enumerations.UpgradeType
 var _maxRank: int
 var _type: Enumerations.PurchaseType
@@ -19,4 +20,4 @@ func get_rank():
 	return _rank
 
 func get_cost():
-	return _baseCost + (_scalingCost * _rank)
+	return ceil(pow(_baseCost + (_scalingCost * _rank), (1 + _rank * 0.01)))

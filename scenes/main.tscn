@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ltavlw2f6nfi"]
+[gd_scene load_steps=7 format=3 uid="uid://ltavlw2f6nfi"]
 
 [ext_resource type="PackedScene" uid="uid://gse3n3r1kq3y" path="res://scenes/ui.tscn" id="1_v42k6"]
 [ext_resource type="Script" path="res://scripts/job_manager.gd" id="2_5jjti"]
 [ext_resource type="Script" path="res://scripts/resource_manager.gd" id="2_bekjc"]
 [ext_resource type="Script" path="res://scripts/ui_manager.gd" id="3_7qpfy"]
 [ext_resource type="Script" path="res://scripts/purchaseable_manager.gd" id="4_0kxrh"]
+[ext_resource type="Script" path="res://scripts/turn_manager.gd" id="6_xh4gw"]
 
 [node name="Main" type="Node2D"]
 
@@ -24,13 +25,18 @@ _maxGrowthPerTurn = 1000
 script = ExtResource("2_5jjti")
 _resourceManager = NodePath("../ResourceManager")
 
-[node name="PurchasableManager" type="Node" parent="." node_paths=PackedStringArray("_jobManager")]
+[node name="PurchasableManager" type="Node" parent="." node_paths=PackedStringArray("_jobManager", "_resourceManager")]
 script = ExtResource("4_0kxrh")
 _jobManager = NodePath("../JobManager")
+_resourceManager = NodePath("../ResourceManager")
 
-[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("_UI", "_jobManager", "_resourceManager", "_purchaseableManager")]
+[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("_UI", "_jobManager", "_resourceManager", "_purchaseableManager", "_turnManager")]
 script = ExtResource("3_7qpfy")
 _UI = NodePath("../CanvasLayer")
 _jobManager = NodePath("../JobManager")
 _resourceManager = NodePath("../ResourceManager")
 _purchaseableManager = NodePath("../PurchasableManager")
+_turnManager = NodePath("../TurnManager")
+
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource("6_xh4gw")

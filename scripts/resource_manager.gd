@@ -47,7 +47,6 @@ func end_turn():
 	for r in Enumerations.ResourceType:
 		if r != Enumerations.ResourceType.find_key(Enumerations.ResourceType.Population):
 			gain_income(Enumerations.ResourceType.get(r))
-	_uiManager.update_resource_labels()
 	
 # Set population offset to 0 for current cost.
 func check_population_cost(populationOffset: int):
