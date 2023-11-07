@@ -46,4 +46,4 @@ uiManager = NodePath("../UIManager")
 techWeight = 5
 popWeight = 2
 buildingWeight = 5
-finalTurn = 4
+finalTurn = 50
