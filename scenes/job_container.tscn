@@ -56,6 +56,7 @@ offset_top = 16.0
 offset_right = 300.0
 offset_bottom = 39.0
 text = "0/10"
+scroll_active = false
 
 [node name="JobDescriptionLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -64,6 +65,7 @@ offset_top = 51.0
 offset_right = 435.0
 offset_bottom = 91.0
 text = "SAMPLE"
+scroll_active = false
 
 [connection signal="pressed" from="Increase" to="." method="increase_pressed"]
 [connection signal="pressed" from="Decrease" to="." method="decrease_pressed"]

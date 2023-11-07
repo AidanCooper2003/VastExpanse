@@ -20,4 +20,4 @@ func get_rank():
 	return _rank
 
 func get_cost():
-	return ceil(pow(_baseCost + (_scalingCost * _rank), (1 + _rank * 0.01)))
+	return ceil(pow(_baseCost + (_scalingCost * _rank), (1 + _rank * 0.02)))

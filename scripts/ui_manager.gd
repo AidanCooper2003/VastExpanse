@@ -16,6 +16,7 @@ func do_updates():
 	update_jobs()
 	update_conversion_label()
 	update_purchaseable_labels()
+	update_turn_label()
 
 func update_jobs():
 	for j in _jobManager.getAllJobNames():
@@ -45,6 +46,9 @@ func update_purchaseable_labels():
 	for p in _purchaseableManager.get_all_purchaseables():
 		var priceString = _purchaseableManager.get_cost_resource(p._purchaseableName)
 		_UI.update_purchasable(p._purchaseableName, p.get_cost(), p._rank, p.get_description(), priceString)
+		
+func update_end_score(techScore : int, popScore : int, buildingScore : int, totalScore : int):
+	_UI.update_end_score_label(techScore, popScore, buildingScore, totalScore)
 
 func hire_job(jobName: String, count: int):
 	_jobManager.hire(jobName, count)
@@ -54,9 +58,14 @@ func fire_job(jobName: String, count: int):
 	_jobManager.hire(jobName, -count)
 	do_updates()
 	
+func update_turn_label():
+	var finalTurn = _turnManager.finalTurn
+	var turn = clamp(_turnManager.get_turn_count(), 0, finalTurn)
+	_UI.update_turn_label(turn, finalTurn)
+
 func end_turn():
 	_resourceManager.end_turn()
-	_UI.update_turn_label(_turnManager.get_turn_count())
+	update_turn_label()
 	update_resource_labels()
 	
 func make_purchase(purchaseableName: String):

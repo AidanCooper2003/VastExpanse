@@ -23,7 +23,7 @@ func hire(count: int):
 		return overflow
 	# Count below 0
 	else:
-		var overflow = -(_jobHired + count)
+		var overflow = _jobHired + count
 		_jobHired = clamp(_jobHired + count, 0, _jobMax)
 		return overflow
 		

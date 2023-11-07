@@ -13,6 +13,10 @@ var _resources = {}
 @export var resourcesContainer: Node
 @export var conversionLabel : Node
 @export var turnLabel : Node
+@export var endScoreLabel : Node
+@export var endTurnButton : Button
+@export var restartButton : Button
+
 
 
 # At some point, make jobs, purchasables, and resources interfaces so this
@@ -63,5 +67,13 @@ func make_purchase(purchaseName: String):
 	_uiManager.make_purchase(purchaseName)
 	_uiManager.do_updates()
 	
-func update_turn_label(turnNumber : int):
-	turnLabel.text = "Turn: " + str(turnNumber)
+func update_turn_label(turnNumber : int, endTurn : int):
+	turnLabel.text = "Turn: " + str(turnNumber) + "/" + str(endTurn)
+	
+func update_end_score_label(techScore : int, popScore : int, buildingScore : int, totalScore : int):
+	endScoreLabel.text = "Score from techs: " + str(techScore) + "\n" + "Score from population: " + str(popScore) + "\n" + "Score from buildings: " + str(buildingScore) + "\n" + "TOTAL SCORE: " + str(totalScore)
+	endTurnButton.disabled = true
+	restartButton.visible = true
+	
+func restart_game():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")

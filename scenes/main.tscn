@@ -38,5 +38,12 @@ _resourceManager = NodePath("../ResourceManager")
 _purchaseableManager = NodePath("../PurchasableManager")
 _turnManager = NodePath("../TurnManager")
 
-[node name="TurnManager" type="Node" parent="."]
+[node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("purchasableManager", "resourceManager", "uiManager")]
 script = ExtResource("6_xh4gw")
+purchasableManager = NodePath("../PurchasableManager")
+resourceManager = NodePath("../ResourceManager")
+uiManager = NodePath("../UIManager")
+techWeight = 5
+popWeight = 2
+buildingWeight = 5
+finalTurn = 4

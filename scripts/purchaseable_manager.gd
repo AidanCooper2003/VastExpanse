@@ -8,10 +8,10 @@ var purchaseables = {}
 
 var defaultBuildingBaseCost := 10
 var defaultTechnologyBaseCost := 10
-var defaultBuildingScalingCost := 8
+var defaultBuildingScalingCost := 7
 var defaultTechnologyScalingCost := 10
 var defaultMaxRank := 1000
-var defaultBuildingDescriptionScale := 10
+var defaultBuildingDescriptionScale := 5
 var defaultTechnologyDescriptionScale := 1
 
 func _ready():
@@ -59,7 +59,6 @@ func attempt_purchase(purchaseableName: String):
 	var resourceType = get_cost_resource(purchaseableName)
 	var totalResources = _resourceManager.get_current_resource(Enumerations.ResourceType[resourceType])
 	var cost = purchaseable.get_cost() 
-	print(cost)
 	if cost <= totalResources:
 		_resourceManager.set_current_resource(Enumerations.ResourceType[resourceType], totalResources - cost)
 		activate_purchaseable_effect(purchaseableName)
@@ -82,3 +81,10 @@ func activate_purchaseable_effect(purchaseableName):
 	elif purchaseable._upgradeType == Enumerations.UpgradeType.MaxWorkerBonus:
 		_jobManager.set_max_workers(jobName, _jobManager.getMaxWorkers(jobName) + upgradeScale)
 	purchaseable._rank += 1
+
+func get_total_ranks(purchaseType : Enumerations.PurchaseType):
+	var rank = 0
+	for p in get_all_purchaseables():
+		if p._type == purchaseType:
+			rank += p._rank
+	return rank

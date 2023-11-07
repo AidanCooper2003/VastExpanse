@@ -8,9 +8,9 @@ var totalPopulationHired := 0
 @export var _resourceManager : ResourceManager
 
 func _ready():
-	_create_job("Technician", 10)
-	_create_job("Extractor", 10)
-	_create_job("Researcher", 10)
+	_create_job("Technician", 5)
+	_create_job("Extractor", 5)
+	_create_job("Researcher", 5)
 	jobs["Technician"].add_resource_packet(Enumerations.ResourceType.Energy, 2)
 	jobs["Extractor"].add_resource_packet(Enumerations.ResourceType.Materials, 2)
 	jobs["Researcher"].add_resource_packet(Enumerations.ResourceType.Knowledge, 2)
