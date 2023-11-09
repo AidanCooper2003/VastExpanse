@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1orsoqinyjt" path="res://icons/microscope.png" id="11_krdmc"]
 [ext_resource type="Script" path="res://scripts/resource_label.gd" id="13_ob5dy"]
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer", "conversionLabel", "turnLabel", "endScoreLabel", "endTurnButton", "restartButton")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("jobsContainer", "technologyContainer", "buildingsContainer", "resourcesContainer", "conversionLabel", "turnLabel", "endScoreLabel", "endTurnButton", "restartButton", "jobInfoLabel", "purchaseInfoLabel", "statsInfoLabel", "goalInfoLabel", "showGuideButton")]
 script = ExtResource("1_unrjp")
 jobsContainer = NodePath("Jobs")
 technologyContainer = NodePath("Technologies")
@@ -25,6 +25,11 @@ turnLabel = NodePath("TurnLabel")
 endScoreLabel = NodePath("EndGameScoreLabel")
 endTurnButton = NodePath("EndTurn")
 restartButton = NodePath("Restart")
+jobInfoLabel = NodePath("Tutorial/Jobs")
+purchaseInfoLabel = NodePath("Tutorial/Purchase")
+statsInfoLabel = NodePath("Tutorial/Resources")
+goalInfoLabel = NodePath("Tutorial/Goal")
+showGuideButton = NodePath("ShowGuide")
 
 [node name="Jobs" type="Control" parent="."]
 layout_mode = 3
@@ -256,5 +261,52 @@ offset_right = 641.0
 offset_bottom = 245.0
 text = "Restart?"
 
+[node name="ShowGuide" type="Button" parent="."]
+offset_left = 491.0
+offset_top = 586.0
+offset_right = 635.0
+offset_bottom = 625.0
+text = "Show Guide"
+
+[node name="Tutorial" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Jobs" type="RichTextLabel" parent="Tutorial"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 5.0
+offset_right = 482.0
+offset_bottom = 272.0
+text = "Here you can use the arrows to assign or unassign your population to the different jobs. You can only assign population you have, and you can't go above the maximum for each job type. You can also see the total amount of resources produced by each job in this section."
+fit_content = true
+
+[node name="Resources" type="RichTextLabel" parent="Tutorial"]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 4.0
+offset_right = 786.0
+offset_bottom = 235.0
+text = "Energy is used to grow population, which will be deducted once the population cost is reached. Materials are used to build buildings, and knowledge is used to research new technologies. Population shows the amount of assigned workers out of total population. Always assign population to a job if you can!"
+
+[node name="Purchase" type="RichTextLabel" parent="Tutorial"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 294.0
+offset_right = 496.0
+offset_bottom = 563.0
+text = "Buildings and research both allow you to improve resource gain. Buildings are focused on increasing maximum workers for each job, and technologies are focused on granting more resources from each worker. You'll need to balance both to maximize your productivity!"
+
+[node name="Goal" type="RichTextLabel" parent="Tutorial"]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 296.0
+offset_right = 767.0
+offset_bottom = 511.0
+text = "After the turn limit is reached, the game will end and your score will be calculated based on how many buildings you've built, technologies you've researched, and population you've grown. Population is weighted lower than buildings and technologies."
+
 [connection signal="pressed" from="EndTurn" to="." method="end_turn"]
 [connection signal="pressed" from="Restart" to="." method="restart_game"]
+[connection signal="pressed" from="ShowGuide" to="." method="toggle_guide"]

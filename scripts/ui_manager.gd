@@ -9,6 +9,7 @@ class_name UIManager
 
 func _ready():
 	do_updates()
+	_UI.toggle_guide()
 	
 
 func do_updates():

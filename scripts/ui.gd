@@ -5,6 +5,8 @@ var _jobs = {}
 var _purchaseables = {}
 var _resources = {}
 
+var _guideToggled := true
+
 @export var _uiManager: UIManager
 
 @export var jobsContainer: Node
@@ -16,6 +18,11 @@ var _resources = {}
 @export var endScoreLabel : Node
 @export var endTurnButton : Button
 @export var restartButton : Button
+@export var jobInfoLabel : RichTextLabel
+@export var purchaseInfoLabel : RichTextLabel
+@export var statsInfoLabel : RichTextLabel
+@export var goalInfoLabel : RichTextLabel
+@export var showGuideButton : Button
 
 
 
@@ -74,6 +81,16 @@ func update_end_score_label(techScore : int, popScore : int, buildingScore : int
 	endScoreLabel.text = "Score from techs: " + str(techScore) + "\n" + "Score from population: " + str(popScore) + "\n" + "Score from buildings: " + str(buildingScore) + "\n" + "TOTAL SCORE: " + str(totalScore)
 	endTurnButton.disabled = true
 	restartButton.visible = true
+	showGuideButton.disabled = true
+	if _guideToggled:
+		toggle_guide()
 	
 func restart_game():
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	
+func toggle_guide():
+	jobInfoLabel.visible = !jobInfoLabel.visible
+	purchaseInfoLabel.visible = !purchaseInfoLabel.visible
+	statsInfoLabel.visible = !statsInfoLabel.visible
+	goalInfoLabel.visible = !goalInfoLabel.visible
+	_guideToggled = !_guideToggled
