@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ltavlw2f6nfi"]
+[gd_scene load_steps=9 format=3 uid="uid://ltavlw2f6nfi"]
 
 [ext_resource type="PackedScene" uid="uid://gse3n3r1kq3y" path="res://scenes/ui.tscn" id="1_v42k6"]
 [ext_resource type="Script" path="res://scripts/job_manager.gd" id="2_5jjti"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/purchaseable_manager.gd" id="4_0kxrh"]
 [ext_resource type="Script" path="res://scripts/turn_manager.gd" id="6_xh4gw"]
 [ext_resource type="AudioStream" uid="uid://bmt0dbp7dg14a" path="res://audio/ObservingTheStar.ogg" id="7_ujr7o"]
+[ext_resource type="Script" path="res://scenes/MusicManager.gd" id="8_oh6eb"]
 
 [node name="Main" type="Node2D"]
 
@@ -52,3 +53,9 @@ finalTurn = 50
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ujr7o")
 autoplay = true
+
+[node name="MusicManager" type="Node" parent="." node_paths=PackedStringArray("_audioStreamPlayer")]
+script = ExtResource("8_oh6eb")
+_audioStreamPlayer = NodePath("../AudioStreamPlayer")
+
+[connection signal="finished" from="AudioStreamPlayer" to="MusicManager" method="music_ended"]
